@@ -1,24 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello in my basic calculator!");
 string number;
-float firstNumber;
-float secondNumber;
-string actionChar = null;
+float firstNumber = 0;
+float secondNumber = 0;
 double result = 0.0;
 bool repeet = true;
-bool answer = true;
-bool wrongSign = true;
-
 
 do
 {
-    Console.WriteLine("\nWrite first number.");
-    while (!float.TryParse(Console.ReadLine(), out firstNumber))
-    {
-        Console.WriteLine("Its not a number. Try again.\n");
-    }
-    
+    bool wrongSign = true;
+    bool answer = true;
 
+    Console.WriteLine("\nWrite first number.");
+    firstNumber = IsNumber();
+    
     Console.WriteLine("Choose action:\n" +
         "+ >> suma\n" +
         "- >> minus\n" +
@@ -32,46 +27,31 @@ do
         {
             case "+":
                 Console.WriteLine("\nWrite second number.");
-                while (!float.TryParse(Console.ReadLine(), out secondNumber))
-                {
-                    Console.WriteLine("\nIts not a number. Try again.\n");
-                }
+                secondNumber = IsNumber();
                 result = firstNumber + secondNumber;
                 wrongSign = false;
                 break;
             case "-":
                 Console.WriteLine("\nWrite second number.");
-                while (!float.TryParse(Console.ReadLine(), out secondNumber))
-                {
-                    Console.WriteLine("\nIts not a number. Try again.\n");
-                }
+                secondNumber = IsNumber();
                 result = firstNumber - secondNumber;
                 wrongSign = false;
                 break;
             case "*":
                 Console.WriteLine("\nWrite second number.");
-                while (!float.TryParse(Console.ReadLine(), out secondNumber))
-                {
-                    Console.WriteLine("\nIts not a number. Try again.\n");
-                }
+                secondNumber = IsNumber();
                 result = firstNumber * secondNumber;
                 wrongSign = false;
                 break;
             case "/":
                 Console.WriteLine("\nWrite second number.");
-                while (!float.TryParse(Console.ReadLine(), out secondNumber))
-                {
-                    Console.WriteLine("\nIts not a number. Try again.\n");
-                }
+                secondNumber = IsNumber();
                 result = firstNumber / secondNumber;
                 wrongSign = false;
             break;
             case "%":
                 Console.WriteLine("\nWrite second number.");
-                while (!float.TryParse(Console.ReadLine(), out secondNumber))
-                {
-                    Console.WriteLine("\nIts not a number. Try again.\n");
-                }
+                secondNumber = IsNumber();
                 result = firstNumber % secondNumber;
                 wrongSign = false;
                 break;
@@ -113,3 +93,16 @@ do
     } ;
 
 } while (repeet);
+
+
+static float IsNumber()
+{
+    float number = 0;
+    while (!float.TryParse(Console.ReadLine(), out number))
+    {
+        Console.WriteLine("\nIts not a number. Try again.\n");
+    }
+    return number;
+}
+
+
