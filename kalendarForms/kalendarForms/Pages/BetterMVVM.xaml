@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="kalendarForms.BetterMVVM"
+             xmlns:model="clr-namespace:kalendarForms.Model"
+             xmlns:viewmodel="clr-namespace:kalendarForms.ViewModel"
+             x:DataType="viewmodel:BetterViewModel"
+             Title="MVVM">
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto"
+          RowSpacing="0">
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding GetMonkeysCommand}">
+            <CollectionView BackgroundColor="Transparent"
+                            ItemsSource="{Binding Datas}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:DataModel">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="125"
+                                   Padding="0">
+                                <Grid Padding="0"
+                                      ColumnDefinitions="125,*">
+                                    <Image Source="{Binding Image}"
+                                           HeightRequest="125"
+                                           WidthRequest="125"
+                                           Aspect="AspectFill"/>
+                                    <StackLayout Grid.Column="1"
+                                                 Orientation="Vertical"
+                                                         Padding="10"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding Name}"
+                                               
+                                        />
+                                        <Label Text="{Binding Location}"
+                                               
+                                        />
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Button
+            Command="{Binding GetMonkeysCommand}"
+            Text="Get Monkeys"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="8"
+        />
+        
+        
+    </Grid>
+</ContentPage>
